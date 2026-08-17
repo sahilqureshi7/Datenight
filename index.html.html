@@ -21,6 +21,7 @@
       --light-pink: #fff0f5;
       --ink: #292638;
       --muted: #766f82;
+      --gold: #ffc95c;
     }
 
     html,
@@ -70,7 +71,7 @@
     }
 
     /* =========================================
-       BACKGROUND HEARTS
+       BACKGROUND
        ========================================= */
 
     .background-heart {
@@ -118,7 +119,7 @@
     }
 
     /* =========================================
-       MAIN CARD
+       CARD
        ========================================= */
 
     .card {
@@ -127,7 +128,6 @@
       min-height: 640px;
 
       position: relative;
-
       overflow: hidden;
 
       border-radius: 38px;
@@ -204,7 +204,7 @@
     }
 
     /* =========================================
-       PENGUIN
+       ORIGINAL PENGUIN
        ========================================= */
 
     .penguin-wrap {
@@ -542,7 +542,7 @@
     }
 
     /* =========================================
-       BUTTON AREA
+       BUTTONS
        ========================================= */
 
     .button-zone {
@@ -581,11 +581,8 @@
         opacity 0.2s ease;
     }
 
-    /* =========================================
-       NO BUTTON
-       ========================================= */
-
-    #noBtn {
+    #noBtn,
+    #yesBtn {
       background:
         linear-gradient(
           135deg,
@@ -605,35 +602,13 @@
         );
     }
 
-    #noBtn:active {
-      transform:
-        scale(0.94);
+    #noBtn:active,
+    #yesBtn:active {
+      transform: scale(0.94);
     }
-
-    /* =========================================
-       YES BUTTON
-       ========================================= */
 
     #yesBtn {
       display: none;
-
-      background:
-        linear-gradient(
-          135deg,
-          #ff82a9,
-          #ef6795
-        );
-
-      color: white;
-
-      box-shadow:
-        0 9px 20px
-        rgba(
-          239,
-          103,
-          149,
-          0.28
-        );
 
       animation:
         yesAppear
@@ -644,11 +619,6 @@
           0.3,
           1.3
         );
-    }
-
-    #yesBtn:active {
-      transform:
-        scale(0.94);
     }
 
     @keyframes yesAppear {
@@ -668,10 +638,6 @@
           rotate(0);
       }
     }
-
-    /* =========================================
-       ATTEMPT COUNTER
-       ========================================= */
 
     .attempt-counter {
       min-height: 20px;
@@ -793,12 +759,235 @@
       font-weight: bold;
     }
 
-    .little-message {
-      margin-top: 13px;
+    /* =========================================
+       STORY / EMOTIONAL SECTION
+       ========================================= */
 
+    .story {
+      display: none;
+
+      width: 100%;
+
+      margin-top: 24px;
+
+      animation:
+        storyIn
+        0.8s
+        cubic-bezier(
+          0.2,
+          0.9,
+          0.3,
+          1.2
+        );
+    }
+
+    .story.show {
+      display: block;
+    }
+
+    @keyframes storyIn {
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(25px)
+          scale(0.93);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    .story-text {
+      margin: 0;
+
+      color: #4e4653;
+
+      font-size: 17px;
+
+      line-height: 1.6;
+
+      font-weight: bold;
+    }
+
+    .story-text .soft {
       color: var(--muted);
 
-      font-size: 13px;
+      font-size: 14px;
+
+      font-weight: normal;
+    }
+
+    /* =========================================
+       BONK SCENE
+       ========================================= */
+
+    .bonk-scene {
+      height: 145px;
+
+      width: 100%;
+
+      position: relative;
+
+      margin:
+        8px
+        0
+        4px;
+
+      overflow: visible;
+    }
+
+    .mini-penguin {
+      position: absolute;
+
+      font-size: 76px;
+
+      line-height: 1;
+
+      filter:
+        drop-shadow(
+          0 5px 5px
+          rgba(0, 0, 0, 0.1)
+        );
+    }
+
+    .mini-penguin.one {
+      left: 20%;
+
+      bottom: 18px;
+
+      animation:
+        littleGuy
+        2s
+        ease-in-out
+        infinite;
+    }
+
+    .mini-penguin.two {
+      right: 18%;
+
+      bottom: 18px;
+
+      transform:
+        scaleX(-1);
+
+      opacity: 0;
+
+      animation:
+        attackerEnter
+        0.8s
+        0.8s
+        cubic-bezier(
+          0.2,
+          0.9,
+          0.3,
+          1.2
+        )
+        forwards;
+    }
+
+    .bonk {
+      position: absolute;
+
+      top: 10px;
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        scale(0);
+
+      font-size: 28px;
+
+      font-weight: bold;
+
+      color: var(--dark-pink);
+
+      opacity: 0;
+
+      animation:
+        bonkPop
+        0.55s
+        1.45s
+        ease-out
+        forwards;
+    }
+
+    @keyframes littleGuy {
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          rotate(-4deg);
+      }
+
+      50% {
+        transform:
+          translateY(-5px)
+          rotate(4deg);
+      }
+    }
+
+    @keyframes attackerEnter {
+
+      0% {
+        opacity: 0;
+
+        right: -15%;
+
+        transform:
+          scaleX(-1)
+          translateX(80px)
+          rotate(-15deg);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+
+        right: 18%;
+
+        transform:
+          scaleX(-1)
+          translateX(0)
+          rotate(0);
+      }
+    }
+
+    @keyframes bonkPop {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translateX(-50%)
+          scale(0);
+      }
+
+      40% {
+        opacity: 1;
+
+        transform:
+          translateX(-50%)
+          scale(1.25)
+          rotate(-8deg);
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translateX(-50%)
+          scale(0.9)
+          rotate(8deg);
+      }
     }
 
     /* =========================================
@@ -810,7 +999,7 @@
 
       width: 100%;
 
-      margin-top: 24px;
+      margin-top: 23px;
 
       animation:
         movieIn
@@ -832,8 +1021,9 @@
         opacity: 0;
 
         transform:
-          translateY(25px)
-          scale(0.92);
+          translateY(30px)
+          scale(0.9)
+          rotate(-1deg);
       }
 
       to {
@@ -841,7 +1031,8 @@
 
         transform:
           translateY(0)
-          scale(1);
+          scale(1)
+          rotate(0);
       }
     }
 
@@ -892,7 +1083,7 @@
       overflow: hidden;
 
       padding:
-        19px
+        20px
         17px
         18px;
 
@@ -1058,6 +1249,7 @@
     }
 
     @keyframes floatUp {
+
       0% {
         opacity: 0;
 
@@ -1100,6 +1292,7 @@
     }
 
     @keyframes sparkle {
+
       0% {
         opacity: 0;
 
@@ -1129,8 +1322,7 @@
     @media (max-width: 480px) {
 
       body {
-        padding:
-          10px;
+        padding: 10px;
 
         align-items: flex-start;
 
@@ -1206,6 +1398,30 @@
         font-size: 30px;
       }
 
+      .story {
+        margin-top: 20px;
+      }
+
+      .story-text {
+        font-size: 16px;
+      }
+
+      .bonk-scene {
+        height: 125px;
+      }
+
+      .mini-penguin {
+        font-size: 63px;
+      }
+
+      .mini-penguin.one {
+        left: 15%;
+      }
+
+      .mini-penguin.two {
+        right: 13%;
+      }
+
       .movie-card {
         padding:
           18px
@@ -1258,6 +1474,10 @@
       .movie-title {
         font-size: 25px;
       }
+
+      .mini-penguin {
+        font-size: 57px;
+      }
     }
 
     /* =========================================
@@ -1296,7 +1516,7 @@
 <body>
 
   <!-- =========================================
-       BACKGROUND DECORATION
+       BACKGROUND
        ========================================= -->
 
   <div class="background-heart h1">♡</div>
@@ -1382,11 +1602,6 @@
         id="buttonZone"
       >
 
-        <!--
-          IMPORTANT:
-          Initially ONLY No is visible.
-        -->
-
         <button
           id="noBtn"
           type="button"
@@ -1394,12 +1609,6 @@
           No 💕
         </button>
 
-
-        <!--
-          Yes is hidden initially.
-          It appears only after the third
-          No click.
-        -->
 
         <button
           id="yesBtn"
@@ -1443,74 +1652,134 @@
       </p>
 
 
-      <p class="little-message">
-        I knew you missed me. 😌
-      </p>
-
-
       <!-- =======================================
-           MOVIE DATE
+           STORY
            ======================================= -->
 
       <div
-        class="movie-proposal"
-        id="movieProposal"
+        class="story"
+        id="story"
       >
 
-        <div class="movie-divider">
-          And now... one more thing 👀
+        <p class="story-text">
+
+          I know I've been a pain in the ass. 😭
+
+          <br />
+
+          <span class="soft">
+            ...but I want to show you how important
+            you are to me. ❤️
+          </span>
+
+        </p>
+
+
+        <!-- =====================================
+             PENGUIN BONK
+             ===================================== -->
+
+        <div class="bonk-scene">
+
+          <div class="mini-penguin one">
+            🐧
+          </div>
+
+
+          <div class="mini-penguin two">
+            🐧
+          </div>
+
+
+          <div class="bonk">
+            BONK! 💥
+          </div>
+
         </div>
 
 
-        <div class="movie-card">
+        <p class="story-text">
 
-          <div class="movie-question">
-            Since you missed me...
+          So...
+
+          <br />
+
+          <span class="soft">
+            I thought I'd take you out. 👀
+          </span>
+
+        </p>
+
+
+        <!-- =====================================
+             MOVIE DATE
+             ===================================== -->
+
+        <div
+          class="movie-proposal"
+          id="movieProposal"
+        >
+
+          <div class="movie-divider">
+            Our next little adventure 🎀
           </div>
 
 
-          <h3 class="movie-title">
-            Movie date? 🎬🍿
-          </h3>
+          <div class="movie-card">
 
-
-          <div class="movie-details">
-
-            <div class="movie-pill">
-              🎬 Awarapan 2
+            <div class="movie-question">
+              How about a movie date? 🍿
             </div>
 
-            <div class="movie-pill">
-              📍 Seawoods
+
+            <h3 class="movie-title">
+              Awarapan 2 🎬
+            </h3>
+
+
+            <div class="movie-details">
+
+              <div class="movie-pill">
+                📍 Seawoods
+              </div>
+
+              <div class="movie-pill">
+                📅 18th August
+              </div>
+
+              <div class="movie-pill">
+                🕠 5:45 PM
+              </div>
+
             </div>
 
-          </div>
+
+            <div class="movie-date">
+
+              Tuesday,
+              <span>18th August</span>
+
+              <br />
+
+              <span>5:45 PM</span>
+              🕠
+
+            </div>
 
 
-          <div class="movie-date">
+            <div class="movie-ending">
 
-            Tuesday,
-            <span>18th August</span>
+              You + me + popcorn + a movie.
 
-            <br />
+              <br />
 
-            at
-            <span>5:45 PM</span>
-            🕠
+              Sounds like a pretty good date to me.
 
-          </div>
+              <span class="movie-heart">
+                ❤️
+              </span>
 
-
-          <div class="movie-ending">
-
-            You + me + popcorn + a movie.
-            <br />
-
-            Sounds like a pretty good date to me
-
-            <span class="movie-heart">
-              ❤️
-            </span>
+            </div>
 
           </div>
 
@@ -1550,6 +1819,9 @@
     const penguinWrap =
       document.getElementById("penguinWrap");
 
+    const story =
+      document.getElementById("story");
+
     const movieProposal =
       document.getElementById("movieProposal");
 
@@ -1566,90 +1838,84 @@
 
     noBtn.addEventListener(
       "click",
-      handleNoClick
+      () => {
+
+        noClicks++;
+
+
+        /* =====================================
+           FIRST NO
+           ===================================== */
+
+        if (noClicks === 1) {
+
+          speech.textContent =
+            "Hmm... are you sure? 🥺";
+
+          counter.textContent =
+            "Wrong answer 😭";
+
+          shakePenguin();
+
+          return;
+        }
+
+
+        /* =====================================
+           SECOND NO
+           ===================================== */
+
+        if (noClicks === 2) {
+
+          speech.textContent =
+            "That's definitely wrong. 😭";
+
+          counter.textContent =
+            "Wrong answer again! 😤";
+
+          shakePenguin();
+
+          createHearts(4);
+
+          return;
+        }
+
+
+        /* =====================================
+           THIRD NO
+           ===================================== */
+
+        if (noClicks === 3) {
+
+          speech.textContent =
+            "Okay... one last chance. 🥺";
+
+          counter.textContent =
+            "There is only ONE correct answer...";
+
+          shakePenguin();
+
+          /*
+           * Hide No.
+           */
+          noBtn.style.display =
+            "none";
+
+
+          /*
+           * Reveal Yes.
+           */
+          yesBtn.style.display =
+            "inline-block";
+
+
+          createSparkles(8);
+
+          return;
+        }
+
+      }
     );
-
-
-    function handleNoClick() {
-
-      noClicks++;
-
-
-      /* =======================================
-         FIRST CLICK
-         ======================================= */
-
-      if (noClicks === 1) {
-
-        speech.textContent =
-          "Hmm... are you sure? 🥺";
-
-        counter.textContent =
-          "Wrong answer 😭";
-
-        shakePenguin();
-
-        return;
-      }
-
-
-      /* =======================================
-         SECOND CLICK
-         ======================================= */
-
-      if (noClicks === 2) {
-
-        speech.textContent =
-          "That's definitely wrong. 😭";
-
-        counter.textContent =
-          "Wrong answer again! 😤";
-
-        shakePenguin();
-
-        createHearts(4);
-
-        return;
-      }
-
-
-      /* =======================================
-         THIRD CLICK
-         ======================================= */
-
-      if (noClicks === 3) {
-
-        speech.textContent =
-          "Okay... I'll give you one last chance. 🥺";
-
-        counter.textContent =
-          "You have ONE correct answer left...";
-
-        shakePenguin();
-
-        /*
-         * Hide No.
-         */
-        noBtn.style.display =
-          "none";
-
-
-        /*
-         * Reveal Yes.
-         */
-        yesBtn.style.display =
-          "inline-block";
-
-
-        /*
-         * Small celebration.
-         */
-        createSparkles(7);
-
-        return;
-      }
-
-    }
 
 
     /* =========================================
@@ -1658,121 +1924,127 @@
 
     yesBtn.addEventListener(
       "click",
-      handleYesClick
-    );
+      () => {
+
+        /*
+         * Hide question.
+         */
+        questionArea.style.display =
+          "none";
 
 
-    function handleYesClick() {
-
-      /*
-       * Hide the question.
-       */
-      questionArea.style.display =
-        "none";
+        /*
+         * Hide original penguin.
+         */
+        penguinWrap.style.display =
+          "none";
 
 
-      /*
-       * Hide the original CSS penguin.
-       */
-      penguinWrap.style.display =
-        "none";
+        /*
+         * Show final section.
+         */
+        final.classList.add(
+          "show"
+        );
 
 
-      /*
-       * Show final content.
-       */
-      final.classList.add(
-        "show"
-      );
+        /*
+         * Card celebration.
+         */
+        card.animate(
 
+          [
 
-      /*
-       * Little card bounce.
-       */
-      card.animate(
+            {
+              transform:
+                "scale(1)"
+            },
 
-        [
+            {
+              transform:
+                "scale(1.025)"
+                + " rotate(-1deg)"
+            },
+
+            {
+              transform:
+                "scale(1)"
+                + " rotate(0deg)"
+            }
+
+          ],
 
           {
-            transform:
-              "scale(1)"
-          },
-
-          {
-            transform:
-              "scale(1.025) rotate(-1deg)"
-          },
-
-          {
-            transform:
-              "scale(1) rotate(0deg)"
+            duration: 650,
+            easing: "ease-out"
           }
 
-        ],
-
-        {
-
-          duration: 650,
-
-          easing:
-            "ease-out"
-
-        }
-
-      );
+        );
 
 
-      /*
-       * Big celebration.
-       */
-      createHearts(20);
+        /*
+         * Initial celebration.
+         */
+        createHearts(18);
 
-      createSparkles(16);
-
-
-      /*
-       * Give her a moment to read:
-       *
-       * Thanks for believing in me.
-       * Love you loads.
-       *
-       * Then reveal the movie date.
-       */
-      setTimeout(
-        () => {
-
-          movieProposal.classList.add(
-            "show"
-          );
+        createSparkles(15);
 
 
-          createHearts(12);
+        /*
+         * Reveal emotional message.
+         */
+        setTimeout(
+          () => {
 
-          createSparkles(10);
+            story.classList.add(
+              "show"
+            );
+
+            createHearts(7);
+
+          },
+          1300
+        );
 
 
-          /*
-           * Scroll slightly down on
-           * smaller phones so the
-           * movie proposal is visible.
-           */
-          setTimeout(
-            () => {
+        /*
+         * Reveal movie date after
+         * the penguin bonk scene.
+         */
+        setTimeout(
+          () => {
 
-              movieProposal.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-              });
+            movieProposal.classList.add(
+              "show"
+            );
 
-            },
-            150
-          );
+            createHearts(15);
 
-        },
-        1600
-      );
+            createSparkles(12);
 
-    }
+
+            /*
+             * On mobile, gently bring
+             * the movie proposal into view.
+             */
+            setTimeout(
+              () => {
+
+                movieProposal.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center"
+                });
+
+              },
+              150
+            );
+
+          },
+          4000
+        );
+
+      }
+    );
 
 
     /* =========================================
@@ -1792,22 +2064,26 @@
 
           {
             transform:
-              "translateX(-8px) rotate(-4deg)"
+              "translateX(-8px)"
+              + " rotate(-4deg)"
           },
 
           {
             transform:
-              "translateX(8px) rotate(4deg)"
+              "translateX(8px)"
+              + " rotate(4deg)"
           },
 
           {
             transform:
-              "translateX(-5px) rotate(-2deg)"
+              "translateX(-5px)"
+              + " rotate(-2deg)"
           },
 
           {
             transform:
-              "translateX(5px) rotate(2deg)"
+              "translateX(5px)"
+              + " rotate(2deg)"
           },
 
           {
@@ -1818,12 +2094,8 @@
         ],
 
         {
-
           duration: 450,
-
-          easing:
-            "ease-in-out"
-
+          easing: "ease-in-out"
         }
 
       );
@@ -1838,13 +2110,11 @@
     function createHearts(count) {
 
       const hearts = [
-
         "❤️",
         "💕",
         "💗",
         "💖",
         "💞"
-
       ];
 
 
@@ -1918,12 +2188,10 @@
     function createSparkles(count) {
 
       const symbols = [
-
         "✨",
         "✦",
         "✧",
         "♡"
-
       ];
 
 
